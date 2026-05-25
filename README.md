@@ -3,6 +3,12 @@
 **Enterprise Identity Security Framework — Microsoft Entra ID Premium P2**  
 Oluwaseyi Michael Falode | Cybersecurity & Cloud Security Engineer | Toronto, ON | May 2026
 
+![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-0089D6?style=flat&logo=microsoft-azure&logoColor=white)
+![Microsoft Entra ID](https://img.shields.io/badge/Microsoft_Entra_ID-0078D4?style=flat&logo=microsoft&logoColor=white)
+![Zero Trust](https://img.shields.io/badge/Zero_Trust_Architecture-FF6B35?style=flat&logoColor=white)
+![MFA](https://img.shields.io/badge/MFA_Enforcement-107C41?style=flat&logoColor=white)
+![IAM](https://img.shields.io/badge/Identity_%26_Access_Management-5C2D91?style=flat&logoColor=white)
+
 ---
 
 A complete Conditional Access policy framework designed, deployed, and validated from scratch using Microsoft Entra ID Premium P2. Five policies covering the core security scenarios a regulated financial institution would enforce — standard employees, IT administrators, and external vendors. Every policy was deployed in Report-only mode following enterprise change management best practices and validated using the built-in What If analysis tool before any enforcement.
@@ -41,6 +47,26 @@ Three security groups were created to segment users by role and risk level. Cond
 | CA-Standard-Employees | Test Employee | Standard staff with everyday app access |
 | CA-IT-Administrators | Test Admin | Privileged accounts with elevated system access |
 | CA-External-Vendors | Test Vendor | External contractors with limited app access |
+
+### Test Users Created
+
+![Test Users](screenshots/figure-01-test-users.png)
+
+*Figure 1 — All three test user accounts representing the three user personas*
+
+### Security Groups
+
+![Security Groups](screenshots/figure-02-security-groups.png)
+
+*Figure 2 — Three security groups with Assigned membership type, each targeting a different risk profile*
+
+![Standard Employees Group](screenshots/figure-03-standard-employees-group.png)
+
+*Figure 3 — CA-Standard-Employees group with Test Employee as direct member*
+
+![IT Administrators Group](screenshots/figure-04-it-administrators-group.png)
+
+*Figure 4 — CA-IT-Administrators group with Test Admin as direct member*
 
 ## Policies Deployed
 
@@ -100,6 +126,12 @@ Vendors are external parties with no business need to access Azure portals, admi
 
 ---
 
+### All 5 Policies — Report-only Mode
+
+![All Policies](screenshots/figure-05-all-policies-report-only.png)
+
+*Figure 5 — All 5 Conditional Access policies active in Report-only mode on the Entra dashboard*
+
 ## Named Locations
 
 A named location defined the approved geographic boundary referenced in CA-002.
@@ -107,6 +139,10 @@ A named location defined the approved geographic boundary referenced in CA-002.
 | Location Name | Type | Countries | Used In |
 |---|---|---|---|
 | Allowed-Countries-CA-US | Countries (IP) | Canada, United States | CA-002 — Block Risky Locations |
+
+![Named Location](screenshots/figure-06-named-location.png)
+
+*Figure 6 — Allowed-Countries-CA-US named location using country-based IP geolocation*
 
 ## What If Validation Results
 
@@ -123,6 +159,10 @@ All policies were validated using the Entra What If tool before enabling enforce
 
 **Outcome:** Login proceeds after MFA. Location exclusion working correctly.
 
+![What If US Login](screenshots/figure-07-whattif-us-login.png)
+
+*Figure 7 — What If result: US login triggers MFA only — location policy excluded correctly*
+
 ---
 
 ### Test 2 — Germany Login (Blocked)
@@ -135,6 +175,10 @@ All policies were validated using the Entra What If tool before enabling enforce
 | CA-002 — Block Risky Locations | Applied — access blocked |
 
 **Outcome:** Login completely blocked. Both policies fire. In a live environment this login never completes regardless of credential validity.
+
+![What If Germany Login](screenshots/figure-08-whatif-germany-login.png)
+
+*Figure 8 — What If result: Germany login triggers both MFA and Block — access denied*
 
 ## Policy Framework Architecture
 
@@ -171,19 +215,6 @@ CA-003 — COMPLIANT DEVICE CHECK
 CA-005 — VENDOR SCOPE RESTRICTION
   └── CA-External-Vendors → Office 365 only + MFA required
 ```
-
-## Screenshots
-
-| Figure | What It Shows |
-|---|---|
-| Figure 1 | All three test user accounts — Test Employee, Test Admin, Test Vendor |
-| Figure 2 | Three security groups — CA-Standard-Employees, CA-IT-Administrators, CA-External-Vendors |
-| Figure 3 | CA-Standard-Employees group with Test Employee as direct member |
-| Figure 4 | CA-IT-Administrators group with Test Admin as direct member |
-| Figure 5 | All 5 Conditional Access policies in Report-only mode |
-| Figure 6 | Named location: Allowed-Countries-CA-US (Canada and United States) |
-| Figure 7 | What If result — US login triggers MFA only, location policy excluded correctly |
-| Figure 8 | What If result — Germany login triggers MFA + Block |
 
 ## Key Concepts Demonstrated
 
