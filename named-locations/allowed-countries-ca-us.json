@@ -1,0 +1,24 @@
+{
+  "displayName": "Allowed-Countries-CA-US",
+  "description": "Named location defining the approved geographic region for all users. Referenced as an exclusion in CA-002 (Block Risky Locations). Any login attempt originating from outside these two countries triggers the block policy.",
+  "type": "countriesAndRegions",
+  "includeUnknownCountriesAndRegions": false,
+  "countriesAndRegions": ["CA", "US"],
+  "usedInPolicies": ["CA-002 — Block Risky Locations"],
+  "_metadata": {
+    "detection_method": "IP-based geolocation",
+    "rationale": "Financial institution operating in Canada and the Americas — no legitimate login source outside these regions",
+    "what_if_validation": {
+      "test_1": {
+        "ip": "8.8.8.8",
+        "country": "United States",
+        "result": "Excluded from block — login proceeds to MFA challenge"
+      },
+      "test_2": {
+        "ip": "185.220.101.1",
+        "country": "Germany",
+        "result": "Not excluded — CA-002 block policy applies, access denied"
+      }
+    }
+  }
+}

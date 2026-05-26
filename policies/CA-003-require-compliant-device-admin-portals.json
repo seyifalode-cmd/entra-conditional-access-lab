@@ -1,0 +1,26 @@
+{
+  "displayName": "CA-003 — Require Compliant Device for Admin Portals",
+  "description": "Device compliance policy for admin portals. Admin portals are the highest-value targets in any organization. Only Intune-enrolled devices verified as meeting security standards can access Microsoft Admin Portals. An attacker with stolen admin credentials on an unmanaged device gets nothing.",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": ["All"]
+    },
+    "applications": {
+      "includeApplications": ["MicrosoftAdminPortals"]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": ["compliantDevice"]
+  },
+  "_metadata": {
+    "phase": 3,
+    "priority": "critical",
+    "threat": "Admin portal access from unmanaged or compromised device",
+    "mitre_tactic": "Privilege Escalation — T1078.004 Cloud Accounts",
+    "device_management": "Microsoft Intune enrollment required",
+    "target_apps": ["Microsoft Entra admin center", "Microsoft 365 admin center", "Azure portal"],
+    "deployment_mode": "Report-only (pre-enforcement validation)"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "displayName": "CA-001 — Require MFA for All Users",
+  "description": "Baseline MFA policy. Requires multifactor authentication for every user accessing any cloud application. MFA blocks over 99% of account compromise attacks. No exceptions, no exclusions.",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": ["All"]
+    },
+    "applications": {
+      "includeApplications": ["All"]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": ["mfa"]
+  },
+  "_metadata": {
+    "phase": 1,
+    "priority": "baseline",
+    "threat": "Account takeover via phishing or credential stuffing",
+    "mitre_tactic": "Initial Access — T1078 Valid Accounts",
+    "deployment_mode": "Report-only (pre-enforcement validation)",
+    "validated_with": "What If tool before enforcement"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "displayName": "CA-002 — Block Risky Locations",
+  "description": "Geo-blocking policy. Blocks all login attempts from countries outside the approved geographic region. A financial institution operating in Canada and the Americas has no legitimate reason to allow logins from unrelated regions. Stolen credentials used from foreign countries are stopped before authentication begins.",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": ["All"]
+    },
+    "applications": {
+      "includeApplications": ["All"]
+    },
+    "locations": {
+      "includeLocations": ["All"],
+      "excludeLocations": ["Allowed-Countries-CA-US"]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": ["block"]
+  },
+  "_metadata": {
+    "phase": 2,
+    "priority": "high",
+    "threat": "Credential use by foreign attackers after dark web purchase",
+    "mitre_tactic": "Initial Access — T1078 Valid Accounts (from foreign IP)",
+    "named_location_reference": "Allowed-Countries-CA-US",
+    "approved_countries": ["Canada", "United States"],
+    "deployment_mode": "Report-only (pre-enforcement validation)",
+    "validated_with": "What If tool — Germany IP 185.220.101.1 confirmed BLOCKED"
+  }
+}

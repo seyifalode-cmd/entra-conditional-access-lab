@@ -1,0 +1,27 @@
+{
+  "displayName": "CA-004 — Strict MFA for Admin Accounts",
+  "description": "Dedicated MFA policy targeting IT administrator accounts specifically. Admin accounts are the primary target of attackers — a compromised admin account can modify security settings, create users, grant permissions, and access everything. This policy challenges admin accounts at every sign-in risk level (Low, Medium, High) with zero exceptions. CA-001 covers all users; CA-004 creates an explicit, separate policy for admin accounts so they can be monitored, audited, and tightened independently.",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeGroups": ["CA-IT-Administrators"]
+    },
+    "applications": {
+      "includeApplications": ["All"]
+    },
+    "signInRiskLevels": ["low", "medium", "high"]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": ["mfa"]
+  },
+  "_metadata": {
+    "phase": 4,
+    "priority": "critical",
+    "threat": "Privileged account compromise — admin account takeover",
+    "mitre_tactic": "Privilege Escalation — T1078 Valid Accounts / T1098 Account Manipulation",
+    "target_group": "CA-IT-Administrators",
+    "risk_levels_covered": ["low", "medium", "high"],
+    "deployment_mode": "Report-only (pre-enforcement validation)"
+  }
+}

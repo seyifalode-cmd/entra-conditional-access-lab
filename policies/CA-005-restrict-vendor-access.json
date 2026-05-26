@@ -1,0 +1,27 @@
+{
+  "displayName": "CA-005 — Restrict Vendor Access",
+  "description": "Least privilege access policy for external vendors. Vendors are external parties with no business need to access Azure portals, admin consoles, or sensitive financial systems. This policy scopes vendor access to Office 365 only and requires MFA. A compromised vendor account cannot reach anything beyond email and collaboration tools — principle of least privilege applied at the application layer.",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeGroups": ["CA-External-Vendors"]
+    },
+    "applications": {
+      "includeApplications": ["Office365"]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": ["mfa"]
+  },
+  "_metadata": {
+    "phase": 5,
+    "priority": "high",
+    "threat": "Compromised vendor account used to pivot into sensitive internal systems",
+    "mitre_tactic": "Initial Access — T1078.004 Cloud Accounts / Supply Chain",
+    "target_group": "CA-External-Vendors",
+    "allowed_apps_only": ["Office365"],
+    "blocked_apps": ["Azure portal", "Microsoft Entra admin center", "Microsoft 365 admin center"],
+    "deployment_mode": "Report-only (pre-enforcement validation)"
+  }
+}
