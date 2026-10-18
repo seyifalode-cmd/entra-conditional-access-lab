@@ -427,4 +427,4 @@ Install-Module Microsoft.Graph -Scope CurrentUser
 ---
 
 *Oluwaseyi Michael Falode · Cybersecurity & Cloud Security Engineer · Toronto, ON · May 2026*  
-*linkedin.com/in/oluwaseyi-falode · github.com/seyifalode-cmd*
+*https://www.linkedin.com/in/oluwaseyi-falode-bb3b1651 · github.com/seyifalode-cmd*
